@@ -3,7 +3,9 @@ Emulating a 1950s paper-and-pencil wargame
 
 Play the game at [http://gamow.bennettmcintosh.com/play](http://gamow.bennettmcintosh.com/play)
 
-There are many judgement calls I've had to make:
+Based on the game by George Gamow [[pdf instructions](https://grognard.com/download/games/board/tankgame.pdf)], as described by Thornton Page in [a 1953 report to J. Operations Res.](https://www.jstor.org/stable/166721).
+
+As any TTRPG DM or GM knows, computer referees require much more explicit instructions than do the human referees used in the original version of this game. I've made some changes and interpretations:
 * In the rules as originally written, in which victory is only achieved by eliminating all opposing tansk, one player could force a stalemate by placing, for example, three tanks in a clump of three cells. They would be able to cover all approaches. I considered various possibilities for removing this stalemate condition, inlcuding leaving as-is (and either documenting the forced draw or not), adding an "artillery" or "airstrike" tool that would discourage remaining overlong in the same place, or adding a timer after which the player with the most tanks on the field would win. I decided the least disruptive and most intuitive change would be adding a "capture the flag"–style victory condition, whereby a player can also win by capturing their opponent's back corner
 * In order to implement a "back corner" I changed the shape of the board. It is also
 slightly smaller (and with slightly fewer tanks) to allow faster games.

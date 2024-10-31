@@ -1,0 +1,119 @@
+<!-- 
+
+/* 
+- that we are putting tiles adjacent to other tiles
+- that our tiles are forming valid words
+- whether our tiles are in a single row/column
+*/
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" sizes="192x192" href="imgs/sPurpleSq.png">
+  <link rel="shortcut icon" href="imgs/sPurpleSq.png" type="image/png"/>
+  <link rel="apple-touch-icon" href="imgs/sPurpleSq.png" type="image/png"/>
+  <link rel="stylesheet" href="styles/W3.css">
+  <title>Gamow's Tank Game</title>
+  <meta property="og:title" content="A Tank Game"/>
+  <meta property="og:description" content="A historical game of imperfect information develpped by physicist George Gamow"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+    summary {
+      font-weight: bold;
+    }
+    
+    </style>
+
+</head>
+<body id="body" class="w3-khaki">
+
+  <!-- header -->
+  <div class="w3-row w3-bar w3-light-blue w3-top" style="z-index:3">
+      <a href="index.html" class="w3-bar-item w3-button w3-hover-pale-blue">Home</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-pale-blue">About this game</a>
+      <a href="gamow-game.html" class="w3-bar-item w3-button w3-hover-pale-blue">New Game</a>
+      <a href="https://blog.bennettmcintosh.com" class="w3-bar-item w3-button w3-hover-pale-blue w3-hide-small">Bennett’s Blog</a>
+  </div>
+
+
+  <div class="w3-row" style="padding-top:50px"></div>
+    
+  <div id="game-box" class="w3-container w3-col l6" style="align-items: center;padding-top:10px"> 
+      <div hidden class="w3-row w3-pale-blue" id="turn-screen" style="position:relative;padding:0;max-height:540px;min-height:540px;z-index:2;text-align:center;width:480px;margin:auto;box-shadow:5px 5px #ccccaa">
+            <div hidden id="startPurple" style="position:absolute;bottom:10px;right:10px;"><a href="#" onclick=startPurple() style="box-shadow:3px 3px #cccccc;" class="w3-button w3-purple w3-hover-pink">Start Purple's turn</a></div>
+            <div hidden id="startCombat" style="position:absolute;bottom:10px;right:10px;"><a href="#" onclick=startCombat() style="box-shadow:3px 3px #ccaaaa;" class="w3-button w3-red w3-hover-pink">Start Combat</a></div>
+            
+      </div>
+      
+      <div class="w3-row w3-white" id="game-board" style="position:relative;padding:0;max-height:540px;min-height:540px;z-index:2;text-align:center;width:480px;margin:auto;box-shadow:5px 5px #ccccaa">
+          <div class="w3-row"><p style="text-align:center"><span id="qRemaining">🟠🟠🟠🟠 🟠🟠🟠🟠</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="pRemaining">🟣🟣🟣🟣 🟣🟣🟣🟣</span> </p></div>
+          <p style="font-size:small;color:white;text-align:center;">This game may not be accessible with older web browsers like Internet Explorer and almost definitely not when using assistive technology like screen readers. If you are seeing this while using assistive tech with which this game doesn't work, I'm sorry, please understand that I built this as a learning/passion project. I'd be happy to hear any ideas about how to improve it. If you are not using assistive technology, please update your browser to play.</p>
+          <div id="submit" style="position:absolute;bottom:10px;right:10px;"><a href="#" onclick=submit() style="box-shadow:3px 3px #ccaaaa;" class="w3-button w3-red w3-hover-green">Submit Orders</a></div>
+          <div hidden id="startCombat" style="position:absolute;bottom:10px;right:10px;"><a href="#" onclick=startCombat() style="box-shadow:3px 3px #ccaaaa;" class="w3-button w3-red w3-hover-pink">Start Combat</a></div>
+          <div hidden id="startOrange" style="position:absolute;bottom:10px;right:10px;"><a href="#" onclick=startOrange() style="box-shadow:3px 3px #cccccc;" class="w3-button w3-orange w3-hover-yellow">Start Orange's turn</a></div>
+          <div hidden id="newGame" style="position:absolute;bottom:10px;right:10px;"><a href="#" onclick="window.location.reload();" style="box-shadow:3px 3px #ccaaaa;" class="w3-button w3-green w3-hover-light-green">New Game</a></div>
+      </div>
+      <div class="w3-row" id="buttons" style="margin-top:0px;">
+      </div>
+  </div>
+
+  <div class="w3-container w3-col l5"> 
+
+      <div class="w3-row w3-container w3-center" style="padding-bottom:20px;padding-top:10px;align-content:center;" id="console">
+          <div id="banner" class="w3-white" style="box-shadow:5px 5px orange;text-align:center;margin:auto;padding:15px;width:90%:10px;min-height:50px;max-width:700px">
+              <p id="hexhint" style="margin-bottom:10px;text-align:center;padding-bottom:0px;">Orange goes first; they should give their orders while Purple isn't looking at the screen.</p>
+              <p hidden id="tankhint" style="margin-bottom:10px;text-align:center;padding-bottom:0px;">Click the Hex to which this Tank should move.</p>
+              <p hidden id="sneak" style="margin:0px;text-align:center;">This Tank is <b><i><span style="color:white;background-color:black;">sneaking</span></i></b>; it will not fire unless it is spotted.</p>
+               <p hidden id="unsneak" style="margin:0px;text-align:center;">This Tank is <b><i><span style="background-color:yellow;">not sneaking</span></i></b>; it will fire at any foe it sees.</p>
+               <p hidden id="toggleSneak" style="margin-top:0px!important;"><a href="#" class="w3-button w3-green w3-hover-light-green" style="margin:auto;font-size:small;box-shadow:3px 3px #008800;" onclick="toggleSneak(activeSprite)">Toggle Sneakiness</a></p>
+          </div>
+
+          <div style="padding:15px;margin-top:10px;text-align:left!important;box-shadow:5px 5px #ccccaa" class="w3-row w3-white w3-center">
+    
+    <p><b>This is a game of imperfect information,</b> played by two players on the same device. <a href="#" onclick="toggleInstructions()"><span id="insToggle">Hide</span> instructions</a></p>
+    <div id="instructions"><p>Click a tank (<img src="imgs/sOrange.png" style="height:18px;width:20.6px">), then click on the hexagon (<img src="imgs/hGreen.png" style="height:18px;width:20.6px"> or <img src="imgs/hTan.png" style="height:18px;width:20.6px">) you want to order it to move to. When you are satisfied with your orders, click "Submit Orders" and give the device to your opponent (if you're playing as Orange) or watch with your opponent as your orders are executed (if you're playing as Purple).</p>
+    <p>Click any bolded line below for more info.</p>
+    <p><details><summary>You don’t always know where your opponent’s tanks are.</summary>
+    <ul>
+    <li>If a tank is in a <i>Wooded</i> (green <img src="imgs/hGreen.png" style="height:18px;width:20.6px">) cell, it is visible only to other tanks in that cell.</li>
+    <li>If a tank is in a <i>Cleared</i> (tan <img src="imgs/hTan.png" style="height:18px;width:20.6px">) cell, it is also visible to tanks in adjacent cells—including those skulking in the nearby woods!</ li >
+    </ul>
+    To maintain this secrecy, after each player submits their orders, the game gives instructions about who should be looking at the screen during the next part of the game. 
+    </details>
+    <p><details><summary>Step 1: Each player gives their orders in secret <img src="imgs/sOrange.png" style="height:18px;width:20.6px"> / <img src="imgs/sPurpleA.png" style="height:18px;width:20.6px"></summary> First, each player gives orders to each of their tanks (tanks can either move to adjacent cells or remain in their current cell). <span hidden>When you select a tank, you can also change whether or not it is <i>Sneaking</i> (see below).</span><br>
+    Tanks will change shape when given orders: a hexagonal tank (<img src="imgs/sOrange.png" style="height:18px;width:20.6px">) is not moving, a wedge shaped tank (<img src="imgs/sPurpleA.png" style="height:18px;width:20.6px">) is pointing towards its destination.<br>
+    When you're done, click "Submit Orders", and the game will let you know who should be watching the next step.
+    </details></p>
+    <details><summary>Step 2: Tanks engage in combat</summary>
+    <p>Combat is resolved in random order, for any pair of tanks that meets these conditions:</p>
+    <ul>
+    <li hidden>Any pair of opposing tanks that have switched places with each other target each other: each has a 50% chance of destroying the other. [Note that this isn't implemented yet, so two tanks passing in the woods will be like ships passing in the night!]</li>
+    <li>Any pair of opposing tanks moving to the same cell target each other: each has a 50% chance of destroying the other. </li>
+    <li>Tanks in <i>Wooded</i> <img src="imgs/hGreen.png" style="height:18px;width:20.6px"> cells target opposing tanks in adjacent <i>Cleared</i> <img src="imgs/hTan.png" style="height:18px;width:20.6px"> cells. </li>
+    <li>Tanks in adjacent <i>Cleared</i> <img src="imgs/hTan.png" style="height:18px;width:20.6px"> cells target each other: each has a 50% chance of destroying the other. </li>
+    </ul>
+    </details>
+    <p hidden><details>
+    <summary hidden>Tanks can <i>Sneak</i> so they don’t reveal their position by firing.</summary>Any tank that fires will be visible to the opposing player when they are giving their next set of orders.  To avoid this, may be designated as <i>Sneaking</i>. Tanks that are <i>Not Sneaking</i> will target any tank they can; tanks that are <i>Sneaking</i> will not reveal their position by firing (but if their position would already be known, e.g. because another tank shares their cell, they <b>will</b> fire). </details></p>
+    
+    <p><details><summary>Your goal is to destroy your opponent’s tanks or occupy their <i>Base</i> <img src="imgs/hOrange.png" style="height:18px;width:20.6px">/<img src="imgs/hPurple.png" style="height:18px;width:20.6px"></summary><p> Victory is achieved by either (1) destroying all your opponent's tanks, or (2) by occupyint their opponent's <i>Base</i> (the colored cells at opposite corners of the arena <img src="imgs/hOrange.png" style="height:18px;width:20.6px">/<img src="imgs/hPurple.png" style="height:18px;width:20.6px">). A tank must survive the ensuing round of combat to be considered as having occupied the opponent's <i>Base</i>.<br><b>Tiebreaker:</b> if both players occupy their opponent's <i>Base</i> on the same round, the player with the most Tanks remaining wins; if both players have an equal number of Tanks, the game ends in a tie.</details></p></div>
+
+    <p>Based on the game by George Gamow <a href="https://grognard.com/download/games/board/tankgame.pdf" target="_blank">[pdf instructions]</a>, as described by Thornton Page in a 1953 <a href="https://www.jstor.org/stable/166721" target="_blank">report to <i>J. Operations Res.</i></a>.</p>
+    
+    <p>🕊️ History is interesting and games are fun, but don't let that make you forget that war is in fact needless, ugly brutality.&nbsp;🕊️</p>
+        </div>
+        
+        </div>
+        
+        
+      </div>
+
+<script type="text/javascript" src="gamow.js"></script>
+</body>
+</html>
+
+

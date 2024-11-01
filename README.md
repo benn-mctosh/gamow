@@ -11,17 +11,17 @@ In the late 40s and early 50s, physicist George Gamow[^1] was working at the Ope
 
 <img width="250" alt="Hex grid for Gamow's tank game. A 10x10 board of hexagons with mostly white cells, though some are a darker gray. Ten circular tokens for each of two players are arrayed on the top row (black tokens) and bottom row (white tokens)." src="https://github.com/user-attachments/assets/9939018e-71e0-4d44-a02b-345867e67e66">
 
-The games rules are [described in a 1952 note](tab:https://www.jstor.org/stable/166721) by Thorton Page to the *Journal of Operations Research*. Essentially, each player moves his tanks on a hidden board, and the referee then notes which tanks have come into contact with each other, and then resolves the ensuing “battles” by flipping a coin. A tank in a cleared (white) cell can be targeted by a tank on its own cell or any adjacent cell, but a tank in the wooded (gray) cells can only be targeted by a tank on its own cell. This means that a tank in the woods can be assured a clean kill of any tank on any adjacent cleared cells. This simple, intuitive rule creates...
+The games rules are [described in a 1952 note](https://www.jstor.org/stable/166721) by Thorton Page to the *Journal of Operations Research*. Essentially, each player moves his tanks on a hidden board, and the referee then notes which tanks have come into contact with each other, and then resolves the ensuing “battles” by flipping a coin. A tank in a cleared (white) cell can be targeted by a tank on its own cell or any adjacent cell, but a tank in the wooded (gray) cells can only be targeted by a tank on its own cell. This means that a tank in the woods can be assured a clean kill of any tank on any adjacent cleared cells. This simple, intuitive rule creates...
 
 ## 2. ...The Big Problem
 
 If the goal is to destroy all the opposing tanks, a player with at least two tanks can force a stalemate by placing them two wooded cells, making them unassailable. 
 
-This makes it a game with possibly no winning move—what [Joshua from *WarGames*](tab:https://en.wikipedia.org/wiki/WarGames#Plot) might called “a strange game.” Did Page lay out the rules incorrectly/incompletely? Did Gamow intend a stalemate-friendly game? Did Gamow’s colleagues simply play too aggressively for this to matter? 
+This makes it a game with possibly no winning move—what [Joshua from *WarGames*](https://en.wikipedia.org/wiki/WarGames#Plot) might called “a strange game.” Did Page lay out the rules incorrectly/incompletely? Did Gamow intend a stalemate-friendly game? Did Gamow’s colleagues simply play too aggressively for this to matter? 
 
 **If you’re a historian or aficionado of physics, O.R., games, or the Cold War, maybe you can help me figure out what’s up?** 
 
-[You can play the game here](http://gamow.bennettmcintosh.com/play), though I’ve made some changes, including eliminating the possibility of forced stalemate with a ‘capture the flag’–style victory condition. There are also [print-and-play versions available](tab:https://grognard.com/download/games/board/tankgame.pdf).
+[You can play the game here](http://gamow.bennettmcintosh.com/play), though I’ve made some changes, including eliminating the possibility of forced stalemate with a ‘capture the flag’–style victory condition. There are also [print-and-play versions available](https://grognard.com/download/games/board/tankgame.pdf).
 
 ## 3. Other Little Problems
 

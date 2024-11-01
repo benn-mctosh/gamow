@@ -1,7 +1,7 @@
 # Gamow’s “tank game”
 ## Emulating a 1950s paper-and-pencil wargame (And also, what on Earth was its designer thinking??)
 
-<img width="300" style="margins:auto" alt="A hexagon made of green and tan hexagons, some of which have purple or orange six-leged gamepieces on them" src="https://github.com/user-attachments/assets/117c3a28-1e52-420c-a061-622f737ef6a6">
+<img width="400" alt="A hexagon made of green and tan hexagons, some of which have purple or orange six-leged gamepieces on them" src="https://github.com/user-attachments/assets/117c3a28-1e52-420c-a061-622f737ef6a6">
 
 Play the game at [http://gamow.bennettmcintosh.com/play](http://gamow.bennettmcintosh.com/play)
 
@@ -9,7 +9,7 @@ Play the game at [http://gamow.bennettmcintosh.com/play](http://gamow.bennettmci
 
 In the late 40s and early 50s, physicist George Gamow[^1] was working at the Operations Research Office, one of the U.S. Army’s early forrays into would would eventually become the field of Operations Research.[^2] While there, he came up with a game played by three players (two opponents and a referee) with paper and “real tanks (from the 5&10 cents store).”[^3] Gamow intended the game to simulate the uncertain conditions of war (what any modern military planner or wargamer will surely be familiar with as “fog of war”). He hoped eventually to implement the game in an IBM computer, and have the computer play against itself many times to learn... something about military planning.
 
-<img width="250" style="margins:auto" alt="Hex grid for Gamow's tank game. A 10x10 board of hexagons with mostly white cells, though some are a darker gray. Ten circular tokens for each of two players are arrayed on the top row (black tokens) and bottom row (white tokens)." src="https://github.com/user-attachments/assets/9939018e-71e0-4d44-a02b-345867e67e66">
+<img width="250" alt="Hex grid for Gamow's tank game. A 10x10 board of hexagons with mostly white cells, though some are a darker gray. Ten circular tokens for each of two players are arrayed on the top row (black tokens) and bottom row (white tokens)." src="https://github.com/user-attachments/assets/9939018e-71e0-4d44-a02b-345867e67e66">
 
 The games rules are [described in a 1952 note](tab:https://www.jstor.org/stable/166721) by Thorton Page to the *Journal of Operations Research*. Essentially, each player moves his tanks on a hidden board, and the referee then notes which tanks have come into contact with each other, and then resolves the ensuing “battles” by flipping a coin. A tank in a cleared (white) cell can be targeted by a tank on its own cell or any adjacent cell, but a tank in the wooded (gray) cells can only be targeted by a tank on its own cell. This means that a tank in the woods can be assured a clean kill of any tank on any adjacent cleared cells. This simple, intuitive rule creates...
 

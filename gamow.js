@@ -42,7 +42,7 @@ const ncols = bigBoard // row i has ncols[i] columns
 const woods = bigBoard // the woods are on these hexes
     ? "A05 A07 A09 A11 A13 A15 B08 B10 B12 C09 C11 K05 K07 K09 K11 K13 K15" + 
     " J08 J10 J12 I09 I11 D06 E07 F04 G03 G05 H02 H04 D16 D18 E15 E17 F16 G13 H14 F10"
-    : "B03 A04 A06 A08 A10 A12 I04 I06 I08 I10 I12 H13 C08 C10 D07 D09 D11 E08 F05 F07 F09 G08 G06";
+    : "A04 A06 A08 A10 A12 B07 B09 B11 B13 C10 C12 C14 D09 D11 F05 F07 G02 G04 G06 H03 H05 H07 H09 I04 I06 I08 I10 I12";
     
 const startQ = bigBoard // the orange tanks start on these cells
     ? ["A07", "B06", "B08", "C07", "E07", "F08", "F06", "G07", "I07", "J06", "J08", "K07"]
